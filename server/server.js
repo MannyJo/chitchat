@@ -11,4 +11,4 @@ io.on('connection', socket => {
     socket.on('disconnect', () => console.log('User has left!'));
 });
 
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+server.listen(PORT, () => console.log(`Listening on port ${PORT}`));
