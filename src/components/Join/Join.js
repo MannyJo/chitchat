@@ -29,7 +29,7 @@ const Join = () => {
             <div>
                 <input type="text" placeholder="Room" onChange={handleChangeFor('room')} />
             </div>
-            <Link onClick={onClickSubmit} to="/chat">
+            <Link onClick={onClickSubmit} to={`/chat?name=${name}&room=${room}`}>
                 <button type="submit">Sign In</button>
             </Link>
         </div>
