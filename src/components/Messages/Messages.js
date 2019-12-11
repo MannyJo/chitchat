@@ -1,9 +1,10 @@
 import React from 'react';
+import Message from './Message/Message';
 
 const Messages = ({ messages }) => {
     return (
         <div>
-            {messages.map((message, i) => <div key={i}>{message.name}</div>)}
+            {messages.map((message, i) => <Message message={message} key={i} />)}
         </div>
     );
 }

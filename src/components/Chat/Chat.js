@@ -1,61 +1,58 @@
 import React, { useState, useEffect } from 'react';
-import QueryString from 'querystring';
+import queryString from 'querystring';
 import io from 'socket.io-client';
 import Messages from '../Messages/Messages';
+import Input from '../Input/Input';
 
 let socket;
 
 const Chat = ({ location }) => {
-    const [ name, setName ] = useState('');
-    const [ room, setRoom ] = useState('');
-    const [ message, setMessage ] = useState('');
-    const [ messages, setMessages ] = useState([]);
-    const ENDPOINT = 'http://localhost:5000';
-    
+    const [name, setName] = useState('');
+    const [room, setRoom] = useState('');
+    const [message, setMessage] = useState('');
+    const [messages, setMessages] = useState([]);
+    const ENDPOINT = 'http://localhost:5000/';
+
     useEffect(() => {
-        const { name, room } = QueryString.parse(location.search.replace('?', ''));
-        setName(name);
-        setRoom(room);
+        const { name, room } = queryString.parse(location.search.replace('?', ''));
 
         socket = io(ENDPOINT);
 
-        socket.emit('join', { name, room }, error => {
-            if(error) alert(error);
-        });
+        setRoom(room);
+        setName(name)
 
-    }, [ENDPOINT, location.search]);
-
-    useEffect(() => {
-        socket.on('message', message => {
-            setMessages([ ...messages, message ]);
+        socket.emit('join', { name, room }, (error) => {
+            if (error) {
+                alert(error);
+            }
         });
 
         return () => {
             socket.emit('disconnect');
+
             socket.off();
         }
-    }, [messages]);
+    }, [ENDPOINT, location.search]);
 
-    const sendMessage = event => {
+    useEffect(() => {
+        socket.on('message', (message) => {
+            setMessages([...messages, message]);
+        });
+    }, [messages])
+
+    const sendMessage = (event) => {
         event.preventDefault();
 
-        if(message) {
+        if (message) {
             socket.emit('sendMessage', message, () => setMessage(''));
         }
     }
 
-    console.log(message, messages);
-
     return (
         <div>
             <div>MESSAGES</div>
-            <div>
-                <input 
-                    value={message} 
-                    onChange={event => setMessage(event.target.value)}
-                    onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
-                />
-            </div>
+            <Messages messages={messages} />
+            <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
         </div>
     );
 }
