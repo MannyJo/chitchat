@@ -15,3 +15,6 @@ Once you download this project by downloading, forking, or cloning, install the 
 ```
 npm install or npm i
 ```
+### Site
+https://loving-booth-69db02.netlify.com/
+I deployed the server on Heroku and the client on Netlify.
