@@ -1,6 +1,7 @@
+@import "../../variables";
+
 .messages {
     overflow: auto;
     flex: auto;
-    height: 100%;
-    width: 100%;
+    @include fullScreen();
 }

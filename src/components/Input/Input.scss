@@ -1,3 +1,5 @@
+@import "../../variables";
+
 .typingForm {
         
     display: grid;
@@ -9,12 +11,15 @@
         grid-area: input;
         
         input {
-            width: 100%;
+            @include fullScreen();
             padding: 15px;
             font-size: 1em;
             border-style: none;
             box-sizing: border-box;
             outline: none;
+            @include desktop() {
+                border-radius: 0 0 0 $borderRadius/3;
+            }
         }
     }
 
@@ -22,17 +27,20 @@
         grid-area: button;
 
         button {
-            width: 100%;
-            height: 100%;
+            @include fullScreen();
             border-style: none;
-            background-color: darken(#555FDD, 40%);
-            color: #fff;
+            background-color: #fff;
+            color: color(primary);
             font-size: 1em;
             text-transform: uppercase;
             outline: none;
+            @include desktop() {
+                border-radius: 0 0 $borderRadius/3 0;
+            }
 
             &:active {
-                background-color: lighten(#555FDD, 1%);
+                background-color: #fff;
+                color: color(primary-dark);
             }
         }
     }

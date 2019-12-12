@@ -1,0 +1,59 @@
+@import "../../../variables";
+
+@mixin chatBox() {
+    width: $width;
+    color: color(primary-dark);
+}
+
+@mixin text() {
+    max-width: $width - 20%;
+    display: inline-block;
+    padding: 10px;
+    border-radius: $borderRadius;
+    overflow: visible;
+    word-break: break-all;
+}
+
+@mixin name() {
+    color: #f0f0f0;
+    margin: $margin;
+}
+
+.noti {
+    color: rgb(200, 200, 200);
+    text-align: center;
+}
+
+.myChat {
+    @include chatBox();
+    text-align: right;
+
+    .name {
+        @include name();
+    }
+
+    .myText {
+        @include text();
+        text-align: right;
+        background-color: rgb(255, 255, 255);
+        margin: 0 0 0 auto;
+        color: color(primary-dark);
+    }
+}
+
+.otherChat {
+    @include chatBox();
+    text-align: left;
+
+    .name {
+        @include name();
+    }
+
+    .otherText {
+        @include text();
+        text-align: left;
+        background-color: rgb(247, 173, 37);
+        margin: 0 0 auto 0;
+        color: color(primary-dark);
+    }
+}

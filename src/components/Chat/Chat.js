@@ -53,9 +53,10 @@ const Chat = ({ location }) => {
         <div className="chatContainer">
             <section className="titleDiv">
                 <div className="chatTitle">{room}</div>
+                <a href="/" className="closeChat">X</a>
             </section>
             <section className="messageDiv">
-                <Messages messages={messages} />
+                <Messages messages={messages} name={name} />
             </section>
             <section className="inputDiv">
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />

@@ -1,0 +1,34 @@
+$colors: (
+    primary: #555FDD,
+    primary-light: lighten(#555FDD, 20%),
+    primary-dark: darken(#555FDD, 20%),
+    primary-chat-bg: darken(#555FDD, 40%),
+);
+$width: 100%;
+$height: 100%;
+$margin: 5px;
+$borderRadius: 15px;
+$desktop: 480px;
+
+@function color($color) {
+    @return map-get($map: $colors, $key: $color);
+}
+
+@mixin joinBorder() {
+    border-style: none;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 15px;
+    outline-style: none;
+}
+
+@mixin fullScreen() {
+    width: 100%;
+    height: 100%;
+}
+
+@mixin desktop() {
+    @media (min-width: #{$desktop}) {
+        @content;
+    }
+}
