@@ -1,4 +1,4 @@
-# Chat-App
+# ChitChat
 
 ## Description
 This is a simple chatting application. You can create a conversation with your name and room ID. After this, your friend can join the conversation by typing same room ID.
