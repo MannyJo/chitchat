@@ -8,6 +8,8 @@ const server = http.createServer(app);
 const io = socketio(server);
 const PORT = process.env.PORT || 5000;
 
+app.use(express.static('build'));
+
 io.on('connect', (socket) => {
     socket.on('join', ({ name, room }, callback) => {
         const { error, user } = addUser({ id: socket.id, name, room });
