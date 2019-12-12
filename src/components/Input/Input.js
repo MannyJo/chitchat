@@ -1,9 +1,10 @@
 import React from 'react';
+import './Input.scss';
 
 const Input = ({ message, setMessage, sendMessage }) => {
     return (
-        <form>
-            <div>
+        <form className="typingForm">
+            <section className="inputSection">
                 <input 
                     type="text"
                     value={message} 
@@ -11,8 +12,10 @@ const Input = ({ message, setMessage, sendMessage }) => {
                     onChange={event => setMessage(event.target.value)}
                     onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
                 />
-            </div>
-            <button onClick={event => sendMessage(event)}>Send</button>
+            </section>
+            <section className="buttonSection">
+                <button onClick={event => sendMessage(event)}>Send</button>
+            </section>
         </form>
     );
 }

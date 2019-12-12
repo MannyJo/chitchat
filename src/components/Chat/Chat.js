@@ -3,6 +3,7 @@ import queryString from 'querystring';
 import io from 'socket.io-client';
 import Messages from '../Messages/Messages';
 import Input from '../Input/Input';
+import './Chat.scss';
 
 let socket;
 
@@ -26,18 +27,18 @@ const Chat = ({ location }) => {
                 alert(error);
             }
         });
-
-        return () => {
-            socket.emit('disconnect');
-
-            socket.off();
-        }
     }, [ENDPOINT, location.search]);
 
     useEffect(() => {
         socket.on('message', (message) => {
             setMessages([...messages, message]);
         });
+
+        return () => {
+            socket.emit('disconnect');
+
+            socket.off();
+        }
     }, [messages])
 
     const sendMessage = (event) => {
@@ -49,10 +50,16 @@ const Chat = ({ location }) => {
     }
 
     return (
-        <div>
-            <div>MESSAGES</div>
-            <Messages messages={messages} />
-            <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
+        <div className="chatContainer">
+            <section className="titleDiv">
+                <div className="chatTitle">{room}</div>
+            </section>
+            <section className="messageDiv">
+                <Messages messages={messages} />
+            </section>
+            <section className="inputDiv">
+                <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
+            </section>
         </div>
     );
 }
